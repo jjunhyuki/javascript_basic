@@ -1,18 +1,18 @@
-import { getReviews } from "../api";
-import ReviewList from "./ReviewList";
-import { useEffect, useState } from "react";
+import { getReviews } from '../api';
+import ReviewList from './ReviewList';
+import { useEffect, useState } from 'react';
 
 function App() {
   const [items, setItems] = useState([]);
-  const [order, setOrder] = useState("createdAt");
+  const [order, setOrder] = useState('createdAt');
   const sortedItems = items.sort((a, b) => b[order] - a[order]);
 
-  const handleNewestClick = () => setOrder("createAt");
+  const handleNewestClick = () => setOrder('createAt');
 
-  const handleBestClick = () => setOrder("rating");
+  const handleBestClick = () => setOrder('rating');
 
-  const handleDelete = (id) => {
-    const nextItems = item.filter((item) => item.id !== id);
+  const handleDelete = id => {
+    const nextItems = items.filter(item => item.id !== id);
     setItems(nextItems);
   };
 
@@ -28,7 +28,7 @@ function App() {
   // }, []); //여기서 [] 부분이 디펜던시 부분인데 앞에서 기억한값과 []부분을 비교해서 콜백함수를 부를지 말지 정함
   useEffect(() => {
     handleLoad();
-  }, [order]); //처음 렌더링할떄 리엑트가 기억하는 order값과 현재 order값이 다니까 콜백함수를 호출(handleLoad()를 호출)
+  }, [order]); //처음 렌더링할떄 리엑트가 기억하는 order값과 현재 order값이 다르니까 콜백함수를 호출(handleLoad()를 호출)
 
   return (
     <div>
