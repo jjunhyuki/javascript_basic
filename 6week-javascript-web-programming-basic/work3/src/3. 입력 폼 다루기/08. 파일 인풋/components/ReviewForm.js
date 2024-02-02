@@ -11,29 +11,42 @@ function ReviewForm() {
   });
 
   const handleChange = (name, value) => {
-    setValues((prevValues) => ({
+    setValues(prevValues => ({
       ...prevValues,
       [name]: value,
     }));
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = e => {
     const { name, value } = e.target;
     handleChange(name, value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     console.log(values);
   };
 
   return (
-    <form className="ReviewForm" onSubmit={handleSubmit}>
-      <FileInput name="imgFile" value={values.imgFile} onChange={handleChange} />
-      <input name="title" value={values.title} onChange={handleInputChange} />
-      <input type="number" name="rating" value={values.rating} onChange={handleInputChange} />
-      <textarea name="content" value={values.content} onChange={handleInputChange} />
-      <button type="submit">확인</button>
+    <form className='ReviewForm' onSubmit={handleSubmit}>
+      <FileInput
+        name='imgFIle'
+        value={values.imgFile}
+        onChange={handleChange}
+      />
+      <input name='title' value={values.title} onChange={handleInputChange} />
+      <input
+        type='number'
+        name='rating'
+        value={values.rating}
+        onChange={handleInputChange}
+      />
+      <textarea
+        name='content'
+        value={values.content}
+        onChange={handleInputChange}
+      />
+      <button type='submit'>확인</button>
     </form>
   );
 }
