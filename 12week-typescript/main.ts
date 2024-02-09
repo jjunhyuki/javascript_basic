@@ -475,3 +475,39 @@ type Review = Id &
     // createdAt: Date;
     // updatedAt: Date;
   };
+
+//물론 interface상속으로 같은걸 구현할수있다.
+
+interface Entity06 {
+  id: string;
+}
+
+interface TimestampEntity06 extends Entity06 {
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+interface Product06 extends Entity06 {
+  name: string;
+  price: number;
+  membersOnly?: boolean;
+}
+
+interface User06 extends TimestampEntity06 {
+  username: string;
+  email: string;
+}
+
+interface Review06 extends TimestampEntity06 {
+  productId: string;
+  userId: string;
+  content: string;
+}
+
+const product066: Product06 = {
+  id: 'c001',
+  name: 'product066',
+  price: 19000,
+};
+
+/*---------------------------------------------*/
