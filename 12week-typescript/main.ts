@@ -511,3 +511,43 @@ const product066: Product06 = {
 };
 
 /*---------------------------------------------*/
+
+//10 keyof오ㅏ typeof 연산자
+
+interface Product10 {
+  id: string;
+  name: string;
+  price: number;
+  salePrice: number; //나중에 추가 한 요소
+  membersOnly?: boolean;
+}
+
+//이렇게 해놓으면 추가할 타입이 생기거나 했을때 일일히 해줘야하니 번거롭고 권장하는방법이 아님
+// type ProductProperty = 'id' | 'name' | 'salePrice'/*나중에 추가한 요소*/ | 'price' | 'memberOnly';
+//이럴때 쓰는게 keyof
+// type ProductProperty = keyof Product10; //이렇게 한걸 아래줄처럼 바로 적용시킬수있다.
+const productTableKeys: (keyof Product10)[] = [
+  'name',
+  'price',
+  'salePrice',
+  'membersOnly',
+];
+// const productTableKeys : ProductProperty[] = ['name', 'price', 'salePrice' , 'membersOnly'];
+
+const product10: Product10 = {
+  id: 'c001',
+  name: 'product066',
+  price: 19000,
+  salePrice: 17000,
+  membersOnly: true,
+};
+
+// for(let key of productTableKeys){
+//   console.log(`${key} | ${product11[key]}`);
+// }
+
+console.log(typeof product10); //타입을 문자열로 만들어주는것
+
+//ex)
+let productExample: typeof product10; //타입을 문자열로 만들어주는것
+//타입스크립트에서의 typeof는 이미 존재하는 타입을 가져와서 타입을 정리할때 사용.
