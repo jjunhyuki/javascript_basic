@@ -512,7 +512,7 @@ const product066: Product06 = {
 
 /*---------------------------------------------*/
 
-//10 keyof오ㅏ typeof 연산자
+//10 keyof와 typeof 연산자
 
 interface Product10 {
   id: string;
@@ -551,3 +551,61 @@ console.log(typeof product10); //타입을 문자열로 만들어주는것
 //ex)
 let productExample: typeof product10; //타입을 문자열로 만들어주는것
 //타입스크립트에서의 typeof는 이미 존재하는 타입을 가져와서 타입을 정리할때 사용.
+
+/*-------------------------------*/
+
+// 6. 제네릭 . 01제네릭
+// 이렇게 특정한 타입으로 정의해놓는게 아니고
+// 임의의 타입으로 정의해놓고 그때 그때 다른타입을 넣고 사용할수 있게 하는게 제네릭이다.
+//  map에 마우스를 올리면 어던 타입이 들어는지 확인가능
+const shoeSizes: number[] = [230, 250, 280];
+shoeSizes.map(num => {});
+
+const ClothingSizes: string[] = ['M', 'L', 'XL'];
+ClothingSizes.map(names => {});
+
+//수학에서는 x,y,z를 사용해서 임의의 숫자를 표현하듯이
+// 제네릭 에서는 T,U,V 를 사용해서 임의의 타입을 표현
+// 여기에서는 제네릭 타입을 T[] 배열로 정의
+function printArray<T>(items: T[]) {
+  for (const item of items) {
+    console.log(item);
+  }
+}
+
+printArray(shoeSizes);
+//함수를 실행할때 파라미터를 정의해줄수도있다. => 이렇게 하면 함수의 아규먼트로 블린형을 받는다.
+// printArray<boolean>(shoeSizes);
+printArray(ClothingSizes);
+
+//함수뿐만 아니라 interface에서도 제네릭 사용가능
+
+interface genericProduct {
+  id: string;
+  name: string;
+  price: number;
+  membersOnly?: boolean;
+}
+
+//interface 에서도 <> 꺽새를 열고  안에다 타입을 넣으면 된다.
+interface genericSizeProduct<T> extends genericProduct {
+  sizes: T[];
+}
+
+enum genericSizeClothingSize {
+  S = 'S',
+  M = 'M',
+  L = 'L',
+  XL = 'XL',
+}
+
+type genericSizeClothingProduct = genericSizeProduct<genericSizeClothingSize>;
+
+//타입별 제네릭도 마찬가지.
+//타입 파라미터는 여러개 쓸수있는데 쓸때마타 ,(쉼표) 로 구분해 주자.
+// type Pair1<T, U, V> = [T, U, V, V];
+type Pair<T> = [T, T];
+const point: Pair<number> = [1, 2];
+const fullname: Pair<string> = ['김', '코드잇'];
+
+const map = new Map<string, genericProduct>();
