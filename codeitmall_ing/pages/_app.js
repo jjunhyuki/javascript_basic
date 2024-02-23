@@ -13,7 +13,6 @@ import '@/styles/global.css';
 //   //  서브셋이라는 건 폰트에서 영문, 한글 이런 식으로 사용할 글자들만 골라서 사용할 때 쓰는 것
 //   // 만약 영문만 사용하는 폰트라면 ['latin']으로 써주면 됩니다.
 // });
-
 export default function App({ Component, pageProps }) {
   return (
     <>

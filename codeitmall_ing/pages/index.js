@@ -25,7 +25,6 @@ export async function getStaticProps() {
 export default function Home({ products }) {
   return (
     <>
-      {/* Head를 사용하면 탭에 나오는 title을 바꿀수있다. */}
       <Head>
         <title>Codeitmall</title>
       </Head>
