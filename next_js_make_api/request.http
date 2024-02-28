@@ -1,0 +1,48 @@
+
+//2. 02. 리퀘스트 다루기
+GET http://localhost:3000/api/short-links
+####
+
+GET http://localhost:3000/api/short-links/123
+
+GET http://localhost:3000/api/short-links/123?q=codeit
+
+####
+POST http://localhost:3000/api/short-links/123
+Content-Type: application/json
+
+{
+    "title": "codeit"
+}
+
+####
+
+//쿠키
+POST http://localhost:3000/api/short-links/123
+Cookie: session-id=code1234
+
+###
+// switch 문으로 사용해서 하나씩 request 해보자.
+GET http://localhost:3000/api/short-links/123
+Cookie: session-id=code1234
+
+###
+// switch 문으로 사용해서 하나씩 request 해보자.
+PATCH  http://localhost:3000/api/short-links/123
+Cookie: session-id=code1234
+
+//2. 02. 리스폰스 다루기
+
+####
+POST http://localhost:3000/api/short-links/123
+Content-Type: application/json
+
+{
+    "title": "codeit"
+}
+
+###
+GET http://localhost:3000/api/short-links
+
+###
+PATCH http://localhost:3000/api/short-links
