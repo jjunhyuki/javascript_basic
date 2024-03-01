@@ -1,0 +1,20 @@
+POST https://learn.codeit.kr/api/link-service/users
+Content-Type: application/json
+
+{
+    "name": "준휴키키",
+    "email": "koreaT@example.com",
+    "password": "p@assword1"
+}
+
+
+###
+//auth로 접근하니 access토근을 받는걸 확인할수있고, refresh토큰도 확인할수있다.
+// 이렇게 리스폰스 된 쿠키들은 브라우저가 알아서 저장할것이다.
+POST https://learn.codeit.kr/api/link-service/auth/login
+Content-Type: application/json
+
+{
+    "email": "koreaT@example.com",
+    "password": "p@assword1"
+}
