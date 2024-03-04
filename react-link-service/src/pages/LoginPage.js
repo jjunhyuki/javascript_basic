@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from '../lib/axios';
+// import axios from '../lib/axios';
 import Label from '../components/Label';
 import Input from '../components/Input';
 import Button from '../components/Button';
@@ -8,6 +8,7 @@ import HorizontalRule from '../components/HorizontalRule';
 import Link from '../components/Link';
 import GoogleImage from '../assets/google.svg';
 import styles from './LoginPage.module.css';
+import { useAuth } from '../contexts/AuthProvider';
 
 function LoginPage() {
   const [values, setValues] = useState({
@@ -15,6 +16,7 @@ function LoginPage() {
     password: '',
   });
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -34,20 +36,19 @@ function LoginPage() {
      */
     const { email, password } = values;
     //request는 비동기니까 await을 꼭 넣는걸 잊지말자.
-    await axios.post(
-      '/auth/login',
-      {
-        email,
-        password,
-      },
-      {
-        //withCredentials: true 이 옵션을 꼭 넣어줘야하는데
-        //ㄴ> 서로다른 도메인에서 쿠키를 보내거나 받을떄 반드시 필요
-        // ㄴ> 리퀘스트 보내는 도메인과 리스폰스 받는 도메인이 다를때 필요
-        withCredentials: true,
-      },
-    );
-    navigate('/me');
+    // await axios.post('/auth/login', // contexts/AuthProvider에서 request login함수를 만들어서 사용함.
+    await login({
+      email,
+      password,
+    }),
+      // {
+      //withCredentials: true 이 옵션을 꼭 넣어줘야하는데
+      //ㄴ> 서로다른 도메인에서 쿠키를 보내거나 받을떄 반드시 필요
+      // ㄴ> 리퀘스트 보내는 도메인과 리스폰스 받는 도메인이 다를때 필요
+      // withCredentials: true, 일일히 해줄때에는 이렇게 하는데 lib/axios.js 에서 상시적으로 적용시켜놨음
+      // },
+      // );
+      navigate('/me');
   }
 
   return (

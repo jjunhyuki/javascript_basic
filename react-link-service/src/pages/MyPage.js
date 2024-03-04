@@ -9,17 +9,19 @@ import HorizontalRule from '../components/HorizontalRule';
 import styles from './MyPage.module.css';
 import PlusSquareImage from '../assets/plus-square.svg';
 import LinkCard from '../components/LinkCard';
+import { useAuth } from '../contexts/AuthProvider';
 
 function MyPage() {
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
+  const { user } = useAuth();
   const [links, setLinks] = useState([]);
   const navigate = useNavigate();
 
-  async function getMe() {
-    const res = await axios.get('/users/me');
-    const nextUser = res.data;
-    setUser(nextUser);
-  }
+  // async function getMe() {
+  //   const res = await axios.get('/users/me');
+  //   const nextUser = res.data;
+  //   setUser(nextUser);
+  // }
 
   async function getMyLinks() {
     const res = await axios.get('/users/me/links');
@@ -33,11 +35,11 @@ function MyPage() {
 
   function handleDeleteClick(linkId) {
     axios.delete(`/users/me/links/${linkId}`);
-    setLinks((prevLinks) => prevLinks.filter((link) => link.id !== linkId));
+    setLinks(prevLinks => prevLinks.filter(link => link.id !== linkId));
   }
 
   useEffect(() => {
-    getMe();
+    // getMe();
     getMyLinks();
   }, []);
 
@@ -49,12 +51,12 @@ function MyPage() {
     <>
       <header className={styles.Header}>
         <Card className={styles.Profile}>
-          <Avatar src={user.avatar} alt="프로필 이미지" />
+          <Avatar src={user.avatar} alt='프로필 이미지' />
           <div className={styles.Values}>
             <div className={styles.Name}>{user.name}</div>
             <div className={styles.Email}>{user.email}</div>
           </div>
-          <Button className={styles.EditButton} as={Link} to="/me/edit">
+          <Button className={styles.EditButton} as={Link} to='/me/edit'>
             편집
           </Button>
         </Card>
@@ -65,7 +67,7 @@ function MyPage() {
       </header>
       <HorizontalRule className={styles.HorizontalRule} />
       <ul className={styles.LinkList}>
-        {links.map((link) => (
+        {links.map(link => (
           <li className={styles.LinkItem} key={link.id}>
             <LinkCard
               title={link.title}
@@ -77,8 +79,8 @@ function MyPage() {
           </li>
         ))}
         <li>
-          <Link className={styles.CreateLink} to="/me/links/create">
-            <img src={PlusSquareImage} alt="더하기 아이콘" />
+          <Link className={styles.CreateLink} to='/me/links/create'>
+            <img src={PlusSquareImage} alt='더하기 아이콘' />
             링크 추가하기
           </Link>
         </li>
