@@ -18,3 +18,11 @@ Content-Type: application/json
     "email": "koreaT@example.com",
     "password": "p@assword1"
 }
+###
+
+POST https://learn.codeit.kr/api/link-service/auth/token/refresh
+
+{
+    Cookie: refresh-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzOCIsImlhdCI6MTcwOTkwOTEyOCwiZXhwIjoxNzEwNTEzOTI4fQ.-9a7boeeY-Ql-PnzgmSsJihq1F_8N9uP0PXVu9lLiVc; Path=/api/link-service/auth; HttpOnly; Secure; SameSite=None
+
+}

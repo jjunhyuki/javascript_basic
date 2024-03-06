@@ -18,7 +18,7 @@ function SettingPage() {
     bio: '',
   });
   const navigate = useNavigate();
-  const { user, updateMe } = useAuth;
+  const { user, updateMe } = useAuth(true);
   // async function getMe() {
   //   const res = await axios.get('/users/me');
   //   const nextUser = res.data;
